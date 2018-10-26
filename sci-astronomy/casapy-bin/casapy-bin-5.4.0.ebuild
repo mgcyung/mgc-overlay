@@ -58,7 +58,7 @@ src_install() {
 	cd "${D}/opt/casapy/bin"
 	for binary in `ls`
 	do
-		dosym ../casapy/$binary /opt/bin/$binary
+		dosym ../casapy/bin/$binary /opt/bin/$binary
 	done
 }
 
