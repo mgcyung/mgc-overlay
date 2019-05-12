@@ -4,7 +4,7 @@
 EAPI=6
 PYTHON_COMPAT=( python2_7 )
 
-inherit cmake-utils git-r3 linux-info python-single-r1 systemd udev versionator
+inherit cmake-utils git-r3 linux-info python-single-r1 udev versionator
 
 DESCRIPTION="Run Android applications on any GNU/Linux operating system"
 HOMEPAGE="https://anbox.io/"
@@ -58,7 +58,6 @@ DEPEND="${RDEPEND}
 	media-libs/sdl2-image
 	sys-apps/dbus
 	sys-libs/libcap
-	sys-apps/systemd[nat]
 	test? ( dev-cpp/gtest )"
 
 CONFIG_CHECK="
@@ -94,21 +93,10 @@ src_prepare() {
 src_install() {
 	cmake-utils_src_install
 
-	# 'anbox-container-manager.service' is started as root #
-	insinto $(systemd_get_systemunitdir)
-	doins "${FILESDIR}/anbox-container-manager.service"
-	use privileged && \
-		sed -e 's:--daemon --data-path:--daemon --privileged --data-path:g' \
-			-i $(systemd_get_systemunitdir)/anbox-container-manager.service
-	dosym $(systemd_get_systemunitdir)/anbox-container-manager.service \
-		$(systemd_get_systemunitdir)/default.target.wants/anbox-container-manager.service
 
 	# 'anbox0' network interface #
-	insinto $(systemd_get_utildir)/network
 	doins "${FILESDIR}/80-anbox-bridge.network"
 	doins "${FILESDIR}/80-anbox-bridge.netdev"
-	dosym $(systemd_get_systemunitdir)/systemd-networkd.service \
-		$(systemd_get_systemunitdir)/default.target.wants/systemd-networkd.service
 
 	# 'anbox-launch' wrapper script to start 'session-manager' and anbox appmgr #
 	exeinto /usr/bin
