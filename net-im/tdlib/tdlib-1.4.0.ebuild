@@ -14,3 +14,11 @@ SLOT=0
 KEYWORDS="~amd64 ~x86"
 
 S="${WORKDIR}/td-${PV}"
+
+src_prepare() {
+        # eapply ../patch
+        epatch ${FILESDIR}/${P}-gentoo-multilib-strict.patch
+        eapply_user
+
+        cmake-utils_src_prepare
+}
