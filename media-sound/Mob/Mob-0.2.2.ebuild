@@ -17,13 +17,15 @@ IUSE=""
 S="${WORKDIR}"
 
 src_unpack() {
-	default_src_unpack
-	unpack ./data.tar.xz
+    default_src_unpack
+    unpack ./data.tar.xz
 }
 
 src_install() {
-		insinto /opt/Mob
-		doins -r "${S}"/opt/Mob
-		insinto /opt/usr/share
-		doins -r "${S}"/usr/share/
+    insinto /opt/Mob
+    doins -r "${S}"/opt/Mob
+    insinto /opt/usr/share
+    doins -r "${S}"/usr/share/
+    dodir /opt/bin
+    dosym "${S}"/opt/Mob/mob /opt/bin/mob
 }
