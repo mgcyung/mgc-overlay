@@ -27,5 +27,5 @@ src_install() {
     insinto /opt/usr/share
     doins -r "${S}"/usr/share/
     dodir /opt/bin
-    dosym "${S}"/opt/Mob/mob /opt/bin/mob
+    dosym /opt/Mob/mob /opt/bin/mob
 }
