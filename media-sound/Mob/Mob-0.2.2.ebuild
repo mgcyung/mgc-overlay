@@ -22,7 +22,7 @@ src_unpack() {
 }
 
 src_install() {
-    insinto /opt/Mob
+    insinto /opt
     doins -r "${S}"/opt/Mob
     insinto /opt/usr/share
     doins -r "${S}"/usr/share/
