@@ -28,4 +28,5 @@ src_install() {
     doins -r "${S}"/usr/share/
     dodir /opt/bin
     dosym /opt/Mob/mob /opt/bin/mob
+    fperms 0755 /opt/Mob/mob
 }
