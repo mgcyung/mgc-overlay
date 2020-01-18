@@ -24,7 +24,7 @@ S="${WORKDIR}/tdlib-${PV}"
 
 src_prepare() {
         # eapply ../patch
-        # epatch ${FILESDIR}/${P}-gentoo-multilib-strict.patch
+        epatch ${FILESDIR}/${P}-gentoo-multilib-strict.patch
         eapply_user
 
         cmake-utils_src_prepare
