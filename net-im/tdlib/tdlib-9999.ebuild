@@ -24,8 +24,16 @@ S="${WORKDIR}/tdlib-${PV}"
 
 src_prepare() {
         # eapply ../patch
-        epatch ${FILESDIR}/${P}-gentoo-multilib-strict.patch
         eapply_user
 
         cmake-utils_src_prepare
+}
+
+src_configure() {
+        local mycmakeargs=(
+                -DCMAKE_INSTALL_PREFIX="/usr"
+                -DCMAKE_BUILD_TYPE="Release"
+                -DCMAKE_INSTALL_LIBDIR="$(get_libdir)"
+        )
+        cmake-utils_src_configure
 }
