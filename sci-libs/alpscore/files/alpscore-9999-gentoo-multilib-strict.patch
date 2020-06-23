@@ -1,0 +1,15 @@
+diff --git a/common/cmake/ALPSCommonModuleDefinitions.cmake b/common/cmake/ALPSCommonModuleDefinitions.cmake
+index b04db76e..c475a6da 100644
+--- a/common/cmake/ALPSCommonModuleDefinitions.cmake
++++ b/common/cmake/ALPSCommonModuleDefinitions.cmake
+@@ -253,8 +253,8 @@ function(add_this_package)
+   
+   install(TARGETS ${PROJECT_NAME} 
+           EXPORT ${PROJECT_NAME} 
+-          LIBRARY DESTINATION lib
+-          ARCHIVE DESTINATION lib
++          LIBRARY DESTINATION lib64
++          ARCHIVE DESTINATION lib64
+           INCLUDES DESTINATION include)
+   install(EXPORT ${PROJECT_NAME} NAMESPACE alps:: DESTINATION share/${PROJECT_NAME})
+   target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/include ${PROJECT_BINARY_DIR}/include)

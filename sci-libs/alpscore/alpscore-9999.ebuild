@@ -32,6 +32,14 @@ DEPEND=">=dev-libs/boost-1.47.0[mpi?,python?]
     doc? ( app-doc/doxygen )"
 RDEPEND="${DEPEND}"
 
+src_prepare() {
+        # eapply ../patch
+        epatch ${FILESDIR}/${P}-gentoo-multilib-strict.patch
+        eapply_user
+
+        cmake-utils_src_prepare
+}
+
 src_configure() {
     mycmakeargs="
         $(cmake-utils_use python BuildPython)
