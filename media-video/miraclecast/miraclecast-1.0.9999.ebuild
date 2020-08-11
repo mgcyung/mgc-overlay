@@ -11,7 +11,7 @@ HOMEPAGE="https://github.com/albfan/miraclecast"
 if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/akhuettel/miraclecast.git"
-	EGIT_BRANCH="openrc-v1.0"
+	EGIT_BRANCH="openrc"
 else
 	SRC_URI="https://github.com/albfan/miraclecast/archive/v${PV}.tar.gz -> ${P}.tgz"
 	KEYWORDS="~amd64"
