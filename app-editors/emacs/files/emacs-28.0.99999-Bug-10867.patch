@@ -1,0 +1,72 @@
+--- a/src/xfns.c
++++ b/src/xfns.c
+@@ -2321,24 +2321,6 @@ hack_wm_protocols (struct frame *f, Widget widget)
+ static XFontSet xic_create_xfontset (struct frame *);
+ static XIMStyle best_xim_style (XIMStyles *);
+ 
+-
+-/* Supported XIM styles, ordered by preference.  */
+-
+-static const XIMStyle supported_xim_styles[] =
+-{
+-  XIMPreeditPosition | XIMStatusArea,
+-  XIMPreeditPosition | XIMStatusNothing,
+-  XIMPreeditPosition | XIMStatusNone,
+-  XIMPreeditNothing | XIMStatusArea,
+-  XIMPreeditNothing | XIMStatusNothing,
+-  XIMPreeditNothing | XIMStatusNone,
+-  XIMPreeditNone | XIMStatusArea,
+-  XIMPreeditNone | XIMStatusNothing,
+-  XIMPreeditNone | XIMStatusNone,
+-  0,
+-};
+-
+-
+ #if defined HAVE_X_WINDOWS && defined USE_X_TOOLKIT
+ /* Create an X fontset on frame F with base font name BASE_FONTNAME.  */
+ 
+@@ -2622,15 +2604,8 @@ xic_free_xfontset (struct frame *f)
+ static XIMStyle
+ best_xim_style (XIMStyles *xim)
+ {
+-  int i, j;
+-  int nr_supported = ARRAYELTS (supported_xim_styles);
+-
+-  for (i = 0; i < nr_supported; ++i)
+-    for (j = 0; j < xim->count_styles; ++j)
+-      if (supported_xim_styles[i] == xim->supported_styles[j])
+-	return supported_xim_styles[i];
+-
+-  /* Return the default style.  */
++  /* Return the default style. This is what GTK3 uses and
++     should work fine with all modern input methods.  */
+   return XIMPreeditNothing | XIMStatusNothing;
+ }
+ 
+diff --git a/src/xterm.c b/src/xterm.c
+index 2e0407aff4..0a242ad214 100644
+--- a/src/xterm.c
++++ b/src/xterm.c
+@@ -9704,7 +9704,7 @@ x_draw_window_cursor (struct window *w, struct glyph_row *glyph_row, int x,
+ 
+ #ifdef HAVE_X_I18N
+       if (w == XWINDOW (f->selected_window))
+-	if (FRAME_XIC (f) && (FRAME_XIC_STYLE (f) & XIMPreeditPosition))
++	if (FRAME_XIC (f))
+ 	  xic_set_preeditarea (w, x, y);
+ #endif
+     }
+@@ -10387,11 +10387,8 @@ xim_instantiate_callback (Display *display, XPointer client_data, XPointer call_
+ 		create_frame_xic (f);
+ 		if (FRAME_XIC_STYLE (f) & XIMStatusArea)
+ 		  xic_set_statusarea (f);
+-		if (FRAME_XIC_STYLE (f) & XIMPreeditPosition)
+-		  {
+-		    struct window *w = XWINDOW (f->selected_window);
+-		    xic_set_preeditarea (w, w->cursor.x, w->cursor.y);
+-		  }
++		struct window *w = XWINDOW (f->selected_window);
++		xic_set_preeditarea (w, w->cursor.x, w->cursor.y);
+ 	      }
+ 	}
+ 
