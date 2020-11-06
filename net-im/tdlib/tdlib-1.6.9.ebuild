@@ -6,7 +6,7 @@ EAPI=6
 inherit cmake-utils git-r3
 
 EGIT_REPO_URI="https://github.com/tdlib/td"
-EGIT_COMMIT="ed24ba28dfe9081692af4d5f97fea1e931fa14e2"
+EGIT_COMMIT="74987bf8f08b28001b04da94044528dc169cc90b"
 
 KEYWORDS="~amd64 ~x86"
 
