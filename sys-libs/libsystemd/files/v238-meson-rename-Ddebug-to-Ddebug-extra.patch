@@ -1,0 +1,37 @@
+From 4d9db8c0925c34d02b6a14022c9dd4ddbc2c4dc2 Mon Sep 17 00:00:00 2001
+Date: Mon, 25 Feb 2019 13:40:44 +0800
+Subject: [PATCH] meson rename Ddebug to Ddebug extra
+
+---
+ meson.build       | 2 +-
+ meson_options.txt | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index 30b7f1bafa..6cd89d6a86 100644
+--- a/meson.build
++++ b/meson.build
+@@ -811,7 +811,7 @@ conf.set_quoted('GETTEXT_PACKAGE', meson.project_name())
+ substs.set('SUSHELL', get_option('debug-shell'))
+ substs.set('DEBUGTTY', get_option('debug-tty'))
+ 
+-debug = get_option('debug')
++debug = get_option('debug-extra')
+ enable_debug_hashmap = false
+ enable_debug_mmap_cache = false
+ if debug != ''
+diff --git a/meson_options.txt b/meson_options.txt
+index 4efb422f90..9025aebff3 100644
+--- a/meson_options.txt
++++ b/meson_options.txt
+@@ -53,7 +53,7 @@ option('debug-shell', type : 'string', value : '/bin/sh',
+        description : 'path to debug shell binary')
+ option('debug-tty', type : 'string', value : '/dev/tty9',
+        description : 'specify the tty device for debug shell')
+-option('debug', type : 'string',
++option('debug-extra', type : 'string',
+        description : 'enable extra debugging (hashmap,mmap-cache)')
+ option('memory-accounting-default', type : 'boolean',
+        description : 'enable MemoryAccounting= by default')
+--
+2.17.2

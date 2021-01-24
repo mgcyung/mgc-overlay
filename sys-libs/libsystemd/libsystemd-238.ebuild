@@ -111,6 +111,7 @@ src_prepare() {
 		"${FILESDIR}/238-initctl.patch"
 		"${FILESDIR}/238-nspawn-wait.patch"
 		"${FILESDIR}/${PN}-238-meson_build.patch"
+                "${FILESDIR}/v238-meson-rename-Ddebug-to-Ddebug-extra.patch"
 	)
 
 	default
