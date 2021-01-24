@@ -172,4 +172,5 @@ multilib_src_test() {
 
 multilib_src_install() {
 	DESTDIR="${D}" eninja install
+        mv -v "${D}/usr/bin/busctl" "${D}/usr/bin/busctl.libsystemd" || die
 }
