@@ -10,8 +10,8 @@ HOMEPAGE="https://github.com/albfan/miraclecast"
 
 if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
-	EGIT_REPO_URI="https://github.com/akhuettel/miraclecast.git"
-	EGIT_BRANCH="openrc"
+	EGIT_REPO_URI="https://github.com/albfan/miraclecast.git"
+	EGIT_BRANCH="master"
 else
 	SRC_URI="https://github.com/albfan/miraclecast/archive/v${PV}.tar.gz -> ${P}.tgz"
 	KEYWORDS="~amd64"
@@ -37,6 +37,18 @@ RDEPEND="${COMMONDEPEND}
 DEPEND="${COMMONDEPEND}
 	test? ( >=dev-libs/check-0.9.11 )
 "
+
+src_prepare() {
+	local PATCHES=()
+
+	PATCHES+=(
+                "${FILESDIR}/openrc.patch"
+                "${FILESDIR}/ninja.patch"
+	)
+
+        cmake-utils_src_prepare
+
+}
 
 src_configure() {
 	local mycmakeargs=(
