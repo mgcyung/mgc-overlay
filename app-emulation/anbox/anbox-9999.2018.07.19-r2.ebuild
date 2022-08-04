@@ -1,10 +1,10 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 PYTHON_COMPAT=( python2_7 )
 
-inherit cmake-utils git-r3 linux-info python-single-r1 udev versionator
+inherit cmake git-r3 linux-info python-single-r1 udev versionator
 
 DESCRIPTION="Run Android applications on any GNU/Linux operating system"
 HOMEPAGE="https://anbox.io/"
@@ -84,14 +84,14 @@ pkg_setup() {
 }
 
 src_prepare() {
-	cmake-utils_src_prepare
+	cmake_src_prepare
 
 	! use test && \
 		truncate -s0 cmake/FindGMock.cmake tests/CMakeLists.txt
 }
 
 src_install() {
-	cmake-utils_src_install
+	cmake_src_install
 
 
 	# 'anbox0' network interface #

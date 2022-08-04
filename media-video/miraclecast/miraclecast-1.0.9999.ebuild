@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake-utils
+inherit cmake
 
 DESCRIPTION="Wifi-Display/Miracast Implementation"
 HOMEPAGE="https://github.com/albfan/miraclecast"
@@ -46,7 +46,7 @@ src_prepare() {
         #         "${FILESDIR}/ninja.patch"
 	# )
 
-        cmake-utils_src_prepare
+        cmake_src_prepare
 
 }
 
@@ -55,11 +55,11 @@ src_configure() {
 		-DENABLE_SYSTEMD=$(usex systemd)
 	)
 
-	cmake-utils_src_configure
+	cmake_src_configure
 }
 
 src_install() {
-	cmake-utils_src_install
+	cmake_src_install
 
 	insinto /etc/dbus-1/system.d
 	doins res/org.freedesktop.miracle.conf

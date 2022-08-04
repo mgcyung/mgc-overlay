@@ -1,9 +1,9 @@
 # Copyright 1999-2018 Mikhail Klementev
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
-inherit cmake-utils
+inherit cmake
 
 DESCRIPTION="Cross-platform library for building Telegram clients"
 HOMEPAGE="https://core.telegram.org/tdlib"

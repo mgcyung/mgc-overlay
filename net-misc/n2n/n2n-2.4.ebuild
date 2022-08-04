@@ -4,7 +4,7 @@
 
 EAPI="6"
 
-inherit cmake-utils eutils toolchain-funcs
+inherit cmake eutils toolchain-funcs
 
 DESCRIPTION="A Layer Two Peer-to-Peer VPN"
 HOMEPAGE="http://www.ntop.org/n2n/"

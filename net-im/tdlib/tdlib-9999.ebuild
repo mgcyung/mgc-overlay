@@ -1,9 +1,9 @@
 # Copyright 1999-2018 Mikhail Klementev
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
-inherit cmake-utils
+inherit cmake
 
 if [[ ${PV} == *9999 ]]; then
         inherit git-r3
@@ -26,7 +26,7 @@ src_prepare() {
         # eapply ../patch
         eapply_user
 
-        cmake-utils_src_prepare
+        cmake_src_prepare
 }
 
 src_configure() {
@@ -35,5 +35,5 @@ src_configure() {
                 -DCMAKE_BUILD_TYPE="Release"
                 -DCMAKE_INSTALL_LIBDIR="$(get_libdir)"
         )
-        cmake-utils_src_configure
+        cmake_src_configure
 }

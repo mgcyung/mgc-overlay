@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=5
+EAPI=8
 
-inherit cmake-utils
+inherit cmake
 
 DESCRIPTION="A fcitx module to look up pinyin candidate words on the internet"
 HOMEPAGE="http://fcitx-im.org/"
