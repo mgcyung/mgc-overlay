@@ -41,10 +41,10 @@ DEPEND="${COMMONDEPEND}
 src_prepare() {
 	local PATCHES=()
 
-	PATCHES+=(
-                "${FILESDIR}/openrc.patch"
-                "${FILESDIR}/ninja.patch"
-	)
+	# PATCHES+=(
+        #         "${FILESDIR}/openrc.patch"
+        #         "${FILESDIR}/ninja.patch"
+	# )
 
         cmake-utils_src_prepare
 
